@@ -10,10 +10,10 @@
 
       </a>
 
-      <div v-for="(tabItem, index) in product.productChoices" :key="index">
+      <div v-for="(tabItem, indexs) in product.productChoices" :key="indexs">
         <div v-if="selectedTab == tabItem.tab_title" class="tab-content" v-html="tabItem.tab_content"></div>
       </div>
-  </div> 
+  </div>
 </template>
 <script>
 

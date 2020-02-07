@@ -21,8 +21,9 @@
 
         <div v-for="(optGroup, index) in product.productOptions" :key="index">
           <h6>{{optGroup.option_name}}</h6>
-          <select >
-            <option v-for="(optItem, index) in optGroup.option_title_price"
+          <select :v-model="optGroup.option_model" >
+            <option value="">Choose {{optGroup.option_name}}</option>
+            <option v-for="(optItem) in optGroup.option_title_price"
               :key="optItem.Price"
               :value="optItem.Price"
               :id="optItem.title">
@@ -31,47 +32,15 @@
           </select>
         
         </div>
-       <!-- <div v-html="product.productOptions"></div>
-         <h6>Size</h6>
-        <select>
-          <option v-for="(size, index) in product.options.size"
-            :key="index">
-            {{ size }}
-          </option>
-        </select>
-        <h6>Printed Side</h6>
-        <select>
-          <option v-for="(side, index) in product.options.printedSide"
-            :key="index">
-            {{ side }}
-          </option>
-        </select>
-        <h6>Paper</h6>
-        <select>
-          <option v-for="(paper, index) in product.options.papers"
-            :key="index">
-            {{ paper }}
-          </option>
-        </select>
-        <h6>UV Coating</h6>
-        <select>
-          <option v-for="(coating, index) in product.options.uvCoatings"
-            :key="index">
-            {{ coating }}
-          </option>
-        </select>
-        <h6>Quantity</h6>
-        <select>
-          <option v-for="(quantity, index) in product.options.quantity"
-            :key="index">
-            {{ quantity }}
-          </option>
-        </select> -->
       </div>
+
+
       <div class="column">
         <h2><span class="badge">2</span>Upload Design</h2>
         <img id="frontpreviewing" src="http://piedmontcopy.com/wp/wp-content/themes/piedmont/assets/images/upload-img.png">
       </div> 
+
+
       <div class="column job-summary">
         <h2><span class="badge">3</span>Job Information</h2>
         <input type="text" placeholder="Job Name" name="job_name">
@@ -85,6 +54,7 @@
           placeholder="Additional Information">
         </textarea>
         <input type="submit" class="btn btn-primary" value="submit order" name="submit-order">
+
       </div>
       </div>
     <ProductTabs :product="product"/>
@@ -96,7 +66,6 @@
 import ProductTabs from '@/components/Product-tabs.vue'
 
 export default {
-
   components: {
     ProductTabs
   },
@@ -111,7 +80,6 @@ export default {
     
   },  */
   async asyncData({ $axios, error, params }) {
-    //return $axios.get('http://piedmontcopy.com/wp/wp-json/product/v1/productID/' + params.id ).then((response) => {
       return $axios.get('http://piedmontcopy.com/wp/wp-json/product/v2/productID/' + params.id ).then((response) => {
       
       //alert(params.id);
@@ -123,7 +91,6 @@ export default {
     .catch( e => {
       error({ statusCode: 503, message: 'unable to load products at this time. please try again'})
     })
-
   },
   computed : {
     
@@ -137,6 +104,7 @@ export default {
   },
  
 }
+
 
 </script>
 <style scoped>
