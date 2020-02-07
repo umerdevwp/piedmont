@@ -26,3 +26,8 @@ $ PORT=3001 npm run dev
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+RUN Commands :
+json-server --watch db.json
+npm run dev -- --port 3001
